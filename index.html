@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的博客</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
@@ -32,102 +33,69 @@
                             css: {
                                 maxWidth: 'none',
                                 color: '#374151',
-                                h1: {
-                                    color: '#1F2937',
-                                    fontWeight: '800',
-                                    fontSize: '2.25em',
-                                    marginTop: '0',
-                                    marginBottom: '0.8em',
-                                },
-                                h2: {
-                                    color: '#1F2937',
-                                    fontWeight: '700',
-                                    fontSize: '1.8em',
-                                    marginTop: '2em',
-                                    marginBottom: '1em',
-                                },
-                                h3: {
+                                'h1, h2, h3, h4': {
                                     color: '#1F2937',
                                     fontWeight: '600',
-                                    fontSize: '1.5em',
-                                    marginTop: '1.6em',
-                                    marginBottom: '0.6em',
+                                    'scroll-margin-top': '6rem',
                                 },
-                                p: {
-                                    marginTop: '1.2em',
-                                    marginBottom: '1.2em',
+                                strong: {
+                                    color: '#4B5563',
+                                    fontWeight: '600',
                                 },
-                                li: {
-                                    marginTop: '0.5em',
-                                    marginBottom: '0.5em',
-                                },
-                                a: {
+                                code: {
                                     color: '#3B82F6',
-                                    '&:hover': {
-                                        color: '#2563EB',
-                                    },
-                                    textDecoration: 'none',
-                                    borderBottom: '1px solid #3B82F6',
-                                    paddingBottom: '2px',
-                                },
-                                blockquote: {
                                     fontWeight: '400',
-                                    fontStyle: 'italic',
-                                    quotes: '"\\201C""\\201D""\\2018""\\2019"',
-                                    borderLeftWidth: '4px',
-                                    borderLeftColor: '#3B82F6',
                                     backgroundColor: '#EFF6FF',
-                                    padding: '1em 1.5em',
-                                    marginTop: '1.6em',
-                                    marginBottom: '1.6em',
+                                    padding: '0.2em 0.4em',
+                                    borderRadius: '0.25em',
+                                    '&::before': { content: 'none' },
+                                    '&::after': { content: 'none' },
+                                },
+                                'code::before': {
+                                    content: 'none',
+                                },
+                                'code::after': {
+                                    content: 'none',
                                 },
                                 pre: {
                                     backgroundColor: '#1F2937',
                                     color: '#E5E7EB',
-                                    padding: '1.25em 1.5em',
-                                    borderRadius: '0.75rem',
-                                    marginTop: '1.6em',
-                                    marginBottom: '1.6em',
+                                    padding: '1rem',
+                                    borderRadius: '0.5rem',
+                                    code: {
+                                        backgroundColor: 'transparent',
+                                        color: 'inherit',
+                                        padding: '0',
+                                        fontWeight: '400',
+                                    },
                                 },
-                                code: {
-                                    color: '#3B82F6',
-                                    '&::before': { content: '""' },
-                                    '&::after': { content: '""' },
-                                    fontWeight: '400',
-                                    backgroundColor: '#EFF6FF',
-                                    paddingLeft: '0.25rem',
-                                    paddingRight: '0.25rem',
-                                    paddingTop: '0.125rem',
-                                    paddingBottom: '0.125rem',
+                                blockquote: {
+                                    borderLeftColor: '#3B82F6',
+                                    backgroundColor: '#F3F4F6',
                                     borderRadius: '0.25rem',
+                                    padding: '1rem 1.5rem',
+                                    color: '#4B5563',
+                                    fontStyle: 'italic',
                                 },
-                                'ul > li::marker': {
-                                    color: '#3B82F6',
+                                'ul > li': {
+                                    paddingLeft: '1.75em',
+                                    '&::before': {
+                                        backgroundColor: '#3B82F6',
+                                    },
                                 },
-                                'ol > li::marker': {
-                                    color: '#3B82F6',
+                                'ol > li': {
+                                    paddingLeft: '1.75em',
+                                    '&::before': {
+                                        color: '#3B82F6',
+                                    },
                                 },
                                 hr: {
                                     borderColor: '#E5E7EB',
-                                    marginTop: '3em',
-                                    marginBottom: '3em',
+                                    margin: '3em 0',
                                 },
                                 img: {
-                                    borderRadius: '0.75rem',
-                                    marginTop: '2em',
-                                    marginBottom: '2em',
-                                },
-                                table: {
-                                    fontSize: '0.875em',
-                                },
-                                'thead th': {
-                                    paddingTop: '0.75em',
-                                    paddingBottom: '0.75em',
-                                    backgroundColor: '#F3F4F6',
-                                },
-                                'tbody td': {
-                                    paddingTop: '0.75em',
-                                    paddingBottom: '0.75em',
+                                    borderRadius: '0.5rem',
+                                    margin: '2em 0',
                                 },
                             },
                         },
