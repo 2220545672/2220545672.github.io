@@ -2,6 +2,7 @@ let currentPage = 1;
 const articlesPerPage = 5;
 let isLoading = false;
 let hasMore = true;
+let articleCache = new Map(); // 用于缓存文章内容
 
 function loadArticleList() {
     fetch('./posts/articles.json')
@@ -15,6 +16,11 @@ function loadArticleList() {
             // 添加滚动监听
             window.addEventListener('scroll', handleScroll);
             hasMore = data.articles.length > articlesPerPage;
+
+            // 预加载最新的文章
+            if (data.articles.length > 0) {
+                prefetchArticle(data.articles[0].file);
+            }
         })
         .catch(error => {
             console.error('文章列表加载失败:', error);
@@ -85,28 +91,47 @@ function loadMoreArticles() {
     isLoading = false;
 }
 
-function loadArticle(path) {
+function prefetchArticle(path) {
+    if (articleCache.has(path)) return;
+
     fetch(path)
         .then(response => response.ok ? response.text() : Promise.reject('文章加载失败'))
         .then(text => {
+            articleCache.set(path, {
+                content: text,
+                parsedContent: marked.parse(text)
+            });
+        })
+        .catch(error => {
+            console.error('预加载文章失败:', error);
+        });
+}
+
+function loadArticle(path) {
+    // 如果文章已缓存，直接使用缓存内容
+    if (articleCache.has(path)) {
+        const cached = articleCache.get(path);
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = cached.parsedContent;
+        highlightCode(contentDiv);
+        updateUIForArticle(cached.content);
+        return;
+    }
+
+    fetch(path)
+        .then(response => response.ok ? response.text() : Promise.reject('文章加载失败'))
+        .then(text => {
+            // 缓存新加载的文章
+            articleCache.set(path, {
+                content: text,
+                parsedContent: marked.parse(text)
+            });
+
             const parsedContent = marked.parse(text);
             const contentDiv = document.getElementById('content');
             contentDiv.innerHTML = parsedContent;
-            // 处理代码块高亮
-            contentDiv.querySelectorAll('pre code').forEach((block) => {
-                const language = block.className.replace('language-', '');
-                if (Prism.languages[language]) {
-                    block.innerHTML = Prism.highlight(
-                        block.textContent,
-                        Prism.languages[language],
-                        language
-                    );
-                }
-            });
-            document.getElementById('home-page').classList.add('hidden');
-            document.getElementById('article-page').classList.remove('hidden');
-            document.title = text.split('\n')[0].replace('# ', '');
-            history.pushState({}, '', `?article=${encodeURIComponent(path)}`);
+            highlightCode(contentDiv);
+            updateUIForArticle(text);
         })
         .catch(error => {
             console.error(error);
@@ -117,6 +142,26 @@ function loadArticle(path) {
             document.getElementById('home-page').classList.add('hidden');
             document.getElementById('article-page').classList.remove('hidden');
         });
+}
+
+function highlightCode(container) {
+    container.querySelectorAll('pre code').forEach((block) => {
+        const language = block.className.replace('language-', '');
+        if (Prism.languages[language]) {
+            block.innerHTML = Prism.highlight(
+                block.textContent,
+                Prism.languages[language],
+                language
+            );
+        }
+    });
+}
+
+function updateUIForArticle(text) {
+    document.getElementById('home-page').classList.add('hidden');
+    document.getElementById('article-page').classList.remove('hidden');
+    document.title = text.split('\n')[0].replace('# ', '');
+    history.pushState({}, '', `?article=${encodeURIComponent(path)}`);
 }
 
 function loadFullArticle(path) {
