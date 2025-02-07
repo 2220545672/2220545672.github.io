@@ -11,19 +11,16 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
     <script>
         // 配置 marked
-        marked.setOptions({
-            gfm: true, // GitHub 风格 Markdown
-            breaks: true, // 允许回车换行
-            pedantic: false, // 尽可能地兼容 GitHub 风格
-            sanitize: false, // 允许原始输出
-            smartLists: true, // 使用更智能的列表行为
-            smartypants: true, // 使用更智能的标点符号
-            highlight: function (code, lang) {
-                if (Prism.languages[lang]) {
-                    return Prism.highlight(code, Prism.languages[lang], lang);
-                }
-                return code;
-            }
+        marked.use({
+            mangle: false,
+            headerIds: false,
+            gfm: true,
+            breaks: true,
+            pedantic: false,
+            sanitize: false,
+            smartLists: true,
+            smartypants: true,
+            xhtml: false
         });
 
         // Tailwind 配置
@@ -247,7 +244,20 @@
             fetch(path)
                 .then(response => response.ok ? response.text() : Promise.reject('文章加载失败'))
                 .then(text => {
-                    document.getElementById('content').innerHTML = marked.parse(text);
+                    const parsedContent = marked.parse(text);
+                    const contentDiv = document.getElementById('content');
+                    contentDiv.innerHTML = parsedContent;
+                    // 处理代码块高亮
+                    contentDiv.querySelectorAll('pre code').forEach((block) => {
+                        const language = block.className.replace('language-', '');
+                        if (Prism.languages[language]) {
+                            block.innerHTML = Prism.highlight(
+                                block.textContent,
+                                Prism.languages[language],
+                                language
+                            );
+                        }
+                    });
                     document.getElementById('home-page').style.display = 'none';
                     document.getElementById('article-page').style.display = 'block';
                     document.title = text.split('\n')[0].replace('# ', '');
