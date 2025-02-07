@@ -4,228 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的博客</title>
+    <title>我的博客1</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
             background-color: #f7f9fc;
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .header h1 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 2.5em;
-        }
-
-        .header p {
-            color: #666;
-            font-size: 1.1em;
-        }
-
-        .blog-list {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
-
-        .blog-item {
-            padding: 30px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .blog-item:hover {
-            background: rgba(255, 255, 255, 0.99);
-            transform: translateY(-2px);
-        }
-
-        .blog-item:last-child {
-            border-bottom: none;
-        }
-
-        .blog-title {
-            font-size: 1.6em;
-            margin-bottom: 15px;
-        }
-
-        .blog-title a {
-            color: #2c3e50;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .blog-title a:hover {
-            color: #3498db;
-        }
-
-        .blog-meta {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
         }
 
         .blog-meta::before {
             content: "📅";
-            margin-right: 8px;
-        }
-
-        .blog-excerpt {
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .read-more {
-            padding: 8px 16px;
-        }
-
-        .read-more::after {}
-
-        /* 统一按钮样式 */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-            font-size: 1.1em;
-            padding: 8px 20px;
-            border: 1px solid #3498db;
-            border-radius: 20px;
-            color: #3498db;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background: #3498db;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .btn-icon-left::before {
-            margin-right: 8px;
-        }
-
-        .btn-icon-right::after {
-            margin-left: 8px;
-        }
-
-        .article {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .article-footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .back-link {
-            margin-bottom: 20px;
-        }
-
-        .back-link::before {}
-
-        .markdown-body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin-right: 0.5rem;
         }
 
         #home-page,
         #article-page {
             display: none;
         }
-
-        @media (max-width: 768px) {
-            .markdown-body {
-                padding: 15px;
-            }
-        }
     </style>
 </head>
 
-<body>
-    <div class="container">
+<body class="p-6 md:p-10">
+    <div class="max-w-3xl mx-auto">
         <div id="home-page">
-            <header class="header">
-                <h1>我的博客1</h1>
-                <p>记录学习与生活</p>
+            <header class="text-center mb-10 bg-white bg-opacity-95 p-8 rounded-2xl shadow-md">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">我的博客</h1>
+                <p class="text-lg text-gray-600">记录学习与生活</p>
             </header>
 
-            <main class="blog-list">
+            <main class="bg-white bg-opacity-95 rounded-2xl shadow-md overflow-hidden">
+                <div class="blog-list"></div>
             </main>
         </div>
 
         <div id="article-page">
-            <a href="#" onclick="showHomePage(); return false;" class="btn back-link btn-icon-left">返回首页</a>
-            <article class="article markdown-body">
-                <div id="content"></div>
-                <div class="article-footer">
-                    <a href="#" onclick="showHomePage(); return false;" class="btn">返回首页</a>
+            <a href="#" onclick="showHomePage(); return false;"
+                class="inline-flex items-center mb-6 px-6 py-3 border border-blue-500 text-blue-500 rounded-full hover:bg-blue-500 hover:text-white transition-all transform hover:-translate-y-1">
+                <span class="mr-2">←</span>返回首页
+            </a>
+            <article class="bg-white bg-opacity-95 rounded-2xl shadow-md p-10">
+                <div id="content" class="markdown-body"></div>
+                <div class="mt-10 pt-6 border-t border-gray-100 text-center">
+                    <a href="#" onclick="showHomePage(); return false;"
+                        class="inline-flex items-center px-6 py-3 border border-blue-500 text-blue-500 rounded-full hover:bg-blue-500 hover:text-white transition-all transform hover:-translate-y-1">
+                        返回首页
+                    </a>
                 </div>
             </article>
         </div>
     </div>
 
     <script>
-        // 加载文章列表
         function loadArticleList() {
             fetch('./posts/articles.json')
                 .then(response => response.json())
                 .then(data => {
                     const blogList = document.querySelector('.blog-list');
                     blogList.innerHTML = data.articles.map(article => `
-                        <article class="blog-item">
-                            <h2 class="blog-title">
-                                <a href="#" onclick="loadArticle('${article.file}'); return false;">${article.title}</a>
+                        <article class="p-8 border-b border-gray-100 last:border-0 hover:bg-white transition-all">
+                            <h2 class="text-2xl font-bold mb-4">
+                                <a href="#" onclick="loadArticle('${article.file}'); return false;" 
+                                   class="text-gray-800 hover:text-blue-500 transition-colors">
+                                    ${article.title}
+                                </a>
                             </h2>
-                            <div class="blog-meta">
+                            <div class="blog-meta text-sm text-gray-500 mb-4 flex items-center">
                                 发布于 ${article.date}
                             </div>
-                            <p class="blog-excerpt">
+                            <p class="text-gray-600 mb-6 leading-relaxed">
                                 ${article.excerpt}
                             </p>
-                            <a href="#" onclick="loadArticle('${article.file}'); return false;" class="btn read-more btn-icon-right">继续阅读</a>
+                            <a href="#" onclick="loadArticle('${article.file}'); return false;" 
+                               class="inline-flex items-center px-6 py-3 border border-blue-500 text-blue-500 rounded-full hover:bg-blue-500 hover:text-white transition-all transform hover:-translate-y-1">
+                                继续阅读
+                                <span class="ml-2">→</span>
+                            </a>
                         </article>
                     `).join('');
                 })
                 .catch(error => {
                     console.error('文章列表加载失败:', error);
                     document.querySelector('.blog-list').innerHTML = `
-                        <div style="padding: 20px; text-align: center; color: #666;">
-                            <h3>加载文章列表失败</h3>
+                        <div class="p-8 text-center text-gray-600">
+                            <h3 class="text-xl font-bold mb-2">加载文章列表失败</h3>
                             <p>请检查网络连接或稍后重试</p>
                         </div>
                     `;
