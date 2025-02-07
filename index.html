@@ -137,6 +137,30 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
+        .article-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .article-footer .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border: 1px solid #3498db;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .article-footer .back-to-home:hover {
+            background: #3498db;
+            color: white;
+        }
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -190,6 +214,9 @@
             <a href="#" onclick="showHomePage(); return false;" class="back-link">返回首页</a>
             <article class="article markdown-body">
                 <div id="content"></div>
+                <div class="article-footer">
+                    <a href="#" onclick="showHomePage(); return false;" class="back-to-home">返回首页</a>
+                </div>
             </article>
         </div>
     </div>
