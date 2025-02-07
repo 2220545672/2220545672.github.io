@@ -14,6 +14,10 @@
         marked.setOptions({
             gfm: true, // GitHub 风格 Markdown
             breaks: true, // 允许回车换行
+            pedantic: false, // 尽可能地兼容 GitHub 风格
+            sanitize: false, // 允许原始输出
+            smartLists: true, // 使用更智能的列表行为
+            smartypants: true, // 使用更智能的标点符号
             highlight: function (code, lang) {
                 if (Prism.languages[lang]) {
                     return Prism.highlight(code, Prism.languages[lang], lang);
@@ -31,15 +35,62 @@
                             css: {
                                 maxWidth: 'none',
                                 color: '#374151',
+                                h1: {
+                                    color: '#1F2937',
+                                    fontWeight: '800',
+                                    fontSize: '2.25em',
+                                    marginTop: '0',
+                                    marginBottom: '0.8em',
+                                },
+                                h2: {
+                                    color: '#1F2937',
+                                    fontWeight: '700',
+                                    fontSize: '1.8em',
+                                    marginTop: '2em',
+                                    marginBottom: '1em',
+                                },
+                                h3: {
+                                    color: '#1F2937',
+                                    fontWeight: '600',
+                                    fontSize: '1.5em',
+                                    marginTop: '1.6em',
+                                    marginBottom: '0.6em',
+                                },
+                                p: {
+                                    marginTop: '1.2em',
+                                    marginBottom: '1.2em',
+                                },
+                                li: {
+                                    marginTop: '0.5em',
+                                    marginBottom: '0.5em',
+                                },
                                 a: {
                                     color: '#3B82F6',
                                     '&:hover': {
                                         color: '#2563EB',
                                     },
+                                    textDecoration: 'none',
+                                    borderBottom: '1px solid #3B82F6',
+                                    paddingBottom: '2px',
+                                },
+                                blockquote: {
+                                    fontWeight: '400',
+                                    fontStyle: 'italic',
+                                    quotes: '"\\201C""\\201D""\\2018""\\2019"',
+                                    borderLeftWidth: '4px',
+                                    borderLeftColor: '#3B82F6',
+                                    backgroundColor: '#EFF6FF',
+                                    padding: '1em 1.5em',
+                                    marginTop: '1.6em',
+                                    marginBottom: '1.6em',
                                 },
                                 pre: {
                                     backgroundColor: '#1F2937',
                                     color: '#E5E7EB',
+                                    padding: '1.25em 1.5em',
+                                    borderRadius: '0.75rem',
+                                    marginTop: '1.6em',
+                                    marginBottom: '1.6em',
                                 },
                                 code: {
                                     color: '#3B82F6',
@@ -52,6 +103,34 @@
                                     paddingTop: '0.125rem',
                                     paddingBottom: '0.125rem',
                                     borderRadius: '0.25rem',
+                                },
+                                'ul > li::marker': {
+                                    color: '#3B82F6',
+                                },
+                                'ol > li::marker': {
+                                    color: '#3B82F6',
+                                },
+                                hr: {
+                                    borderColor: '#E5E7EB',
+                                    marginTop: '3em',
+                                    marginBottom: '3em',
+                                },
+                                img: {
+                                    borderRadius: '0.75rem',
+                                    marginTop: '2em',
+                                    marginBottom: '2em',
+                                },
+                                table: {
+                                    fontSize: '0.875em',
+                                },
+                                'thead th': {
+                                    paddingTop: '0.75em',
+                                    paddingBottom: '0.75em',
+                                    backgroundColor: '#F3F4F6',
+                                },
+                                'tbody td': {
+                                    paddingTop: '0.75em',
+                                    paddingBottom: '0.75em',
                                 },
                             },
                         },
@@ -69,7 +148,7 @@
                 class="text-center mb-10 bg-white/80 backdrop-blur-lg p-12 rounded-3xl shadow-lg border border-gray-100">
                 <h1
                     class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight">
-                    我的博客
+                    我的博客2
                 </h1>
                 <p class="text-lg text-gray-600">探索技术，分享生活</p>
                 <div class="mt-8 flex justify-center gap-4">
@@ -109,7 +188,8 @@
             <a href="#" onclick="showHomePage(); return false;"
                 class="group inline-flex items-center mb-6 px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-md">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
                 返回首页
             </a>
