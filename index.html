@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的博客</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PrismJS -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markdown.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -16,6 +21,26 @@
                         DEFAULT: {
                             css: {
                                 maxWidth: 'none',
+                                pre: {
+                                    backgroundColor: 'transparent',
+                                    color: null,
+                                    marginTop: 0,
+                                    marginBottom: '1.5em',
+                                    padding: '1em',
+                                    borderRadius: '0.5em',
+                                },
+                                code: {
+                                    color: null,
+                                    backgroundColor: 'rgb(243 244 246)',
+                                    borderRadius: '0.25em',
+                                    padding: '0.2em 0.4em',
+                                },
+                                'code::before': {
+                                    content: '""'
+                                },
+                                'code::after': {
+                                    content: '""'
+                                }
                             },
                         },
                     },
@@ -32,7 +57,7 @@
                 class="text-center mb-10 bg-white/80 backdrop-blur-lg p-12 rounded-3xl shadow-lg border border-gray-100">
                 <h1
                     class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight">
-                    我的博客6
+                    我的博客8
                 </h1>
                 <p class="text-lg text-gray-600">探索技术，分享生活</p>
                 <div class="mt-8 flex justify-center gap-4">
@@ -80,17 +105,20 @@
                 返回首页
             </a>
             <article class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-                <div id="content" class="p-8 md:p-12 prose prose-blue prose-lg w-full max-w-none 
-                    prose-headings:text-gray-800 
-                    prose-p:text-gray-600 
+                <div id="content" class="p-8 md:p-12 prose prose-lg w-full max-w-none
+                    prose-headings:text-gray-800
+                    prose-p:text-gray-600
                     prose-a:text-blue-600 prose-a:no-underline hover:prose-a:text-blue-500
-                    prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:py-1
-                    prose-code:text-blue-600 prose-code:bg-blue-50 
-                    prose-pre:bg-gray-800
-                    prose-strong:text-gray-800
-                    prose-ul:text-gray-600
-                    prose-ol:text-gray-600
-                    prose-li:marker:text-blue-500"></div>
+                    prose-blockquote:border-l-4 prose-blockquote:border-blue-500 
+                    prose-blockquote:bg-blue-50/50 prose-blockquote:pl-4 prose-blockquote:py-1
+                    prose-strong:text-gray-800 prose-strong:font-semibold
+                    prose-ul:text-gray-600 prose-ul:list-disc
+                    prose-ol:text-gray-600 prose-ol:list-decimal
+                    prose-li:marker:text-blue-500
+                    [&>*:first-child]:mt-0
+                    [&>*:last-child]:mb-0">
+                    <div class="markdown-content"></div>
+                </div>
                 <div class="p-8 border-t border-gray-100 text-center">
                     <a href="#" onclick="showHomePage(); return false;"
                         class="group inline-flex items-center px-8 py-3 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300 hover:-translate-y-1 shadow-md">
@@ -182,12 +210,14 @@
                 })
                 .then(text => {
                     document.getElementById('content').innerHTML = marked.parse(text);
+                    // 高亮代码块
+                    document.querySelectorAll('pre code').forEach((block) => {
+                        Prism.highlightElement(block);
+                    });
                     document.getElementById('home-page').style.display = 'none';
                     document.getElementById('article-page').style.display = 'block';
-                    // 从 markdown 内容中提取标题
                     const title = text.split('\n')[0].replace('# ', '');
                     document.title = title;
-                    // 更新 URL
                     history.pushState({}, '', `?article=${encodeURIComponent(path)}`);
                 })
                 .catch(error => {
