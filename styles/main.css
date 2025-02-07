@@ -1,81 +1,169 @@
-/* 自定义样式 */
+/* GitHub 风格的 Markdown 样式 */
 .prose {
     max-width: none;
-    color: #374151;
+    color: #24292f;
+    line-height: 1.75;
 }
 
-.prose h1,
-.prose h2,
-.prose h3,
+.prose h1 {
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid #eaecef;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.prose h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid #eaecef;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.prose h3 {
+    font-size: 1.25em;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
 .prose h4 {
-    color: #1F2937;
+    font-size: 1em;
+    margin-top: 24px;
+    margin-bottom: 16px;
     font-weight: 600;
-    scroll-margin-top: 6rem;
+    line-height: 1.25;
 }
 
-.prose strong {
-    color: #4B5563;
-    font-weight: 600;
-}
-
-.prose code {
-    color: #3B82F6;
-    font-weight: 400;
-    background-color: #EFF6FF;
-    padding: 0.2em 0.4em;
-    border-radius: 0.25em;
-}
-
-.prose code::before,
-.prose code::after {
-    content: none;
-}
-
-.prose pre {
-    background-color: #1F2937;
-    color: #E5E7EB;
-    padding: 1rem;
-    border-radius: 0.5rem;
-}
-
-.prose pre code {
-    background-color: transparent;
-    color: inherit;
-    padding: 0;
-    font-weight: 400;
+.prose p {
+    margin-top: 0;
+    margin-bottom: 16px;
 }
 
 .prose blockquote {
-    border-left-color: #3B82F6;
-    background-color: #F3F4F6;
-    border-radius: 0.25rem;
-    padding: 1rem 1.5rem;
-    color: #4B5563;
-    font-style: italic;
+    padding: 0 1em;
+    color: #57606a;
+    border-left: 0.25em solid #d0d7de;
+    margin: 0 0 16px;
 }
 
-.prose ul > li {
-    padding-left: 1.75em;
+.prose ul,
+.prose ol {
+    padding-left: 2em;
+    margin-top: 0;
+    margin-bottom: 16px;
 }
 
-.prose ul > li::before {
-    background-color: #3B82F6;
+.prose li {
+    margin-top: 0.25em;
 }
 
-.prose ol > li {
-    padding-left: 1.75em;
+.prose li+li {
+    margin-top: 0.25em;
 }
 
-.prose ol > li::before {
-    color: #3B82F6;
+.prose code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(175, 184, 193, 0.2);
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+.prose pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.prose pre code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+}
+
+.prose table {
+    display: block;
+    width: 100%;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    margin-top: 0;
+    margin-bottom: 16px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.prose table th {
+    font-weight: 600;
+    padding: 6px 13px;
+    border: 1px solid #d0d7de;
+}
+
+.prose table td {
+    padding: 6px 13px;
+    border: 1px solid #d0d7de;
+}
+
+.prose table tr {
+    background-color: #ffffff;
+    border-top: 1px solid #d0d7de;
+}
+
+.prose table tr:nth-child(2n) {
+    background-color: #f6f8fa;
 }
 
 .prose hr {
-    border-color: #E5E7EB;
-    margin: 3em 0;
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #d0d7de;
+    border: 0;
 }
 
 .prose img {
-    border-radius: 0.5rem;
-    margin: 2em 0;
-} 
+    max-width: 100%;
+    box-sizing: content-box;
+    background-color: #ffffff;
+    border-radius: 6px;
+    margin: 16px 0;
+}
+
+.prose a {
+    color: #0969da;
+    text-decoration: none;
+}
+
+.prose a:hover {
+    text-decoration: underline;
+}
+
+.prose strong {
+    font-weight: 600;
+}
+
+/* 代码块语法高亮主题调整 */
+.prose pre[class*="language-"] {
+    background: #f6f8fa;
+    color: #24292f;
+}
+
+.prose code[class*="language-"] {
+    color: #24292f;
+    text-shadow: none;
+}
