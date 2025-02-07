@@ -210,13 +210,13 @@
     <script>
         // 页面加载时显示首页
         window.onload = function () {
-            showHomePage();
-
             // 检查 URL 参数是否有文章
             const urlParams = new URLSearchParams(window.location.search);
             const article = urlParams.get('article');
             if (article) {
                 loadArticle(article);
+            } else {
+                showHomePage();
             }
         };
 
