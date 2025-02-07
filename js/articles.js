@@ -1,27 +1,20 @@
+let currentPage = 1;
+const articlesPerPage = 5;
+let isLoading = false;
+let hasMore = true;
+
 function loadArticleList() {
     fetch('./posts/articles.json')
         .then(response => response.json())
         .then(data => {
+            window.articleData = data; // 保存文章数据
             const blogList = document.querySelector('.blog-list');
-            blogList.innerHTML = data.articles.map(article => `
-                <article class="p-8 md:p-12 hover:bg-blue-50/50 transition-all duration-300">
-                    <h2 class="text-3xl font-bold mb-4">
-                        <a href="#" onclick="loadArticle('${article.file}'); return false;" 
-                           class="text-gray-800 hover:text-blue-600 transition-colors duration-300">
-                            ${article.title}
-                        </a>
-                    </h2>
-                    <div class="text-sm text-gray-500 mb-4">发布于 ${article.date}</div>
-                    <p class="text-gray-600 mb-6 leading-relaxed">${article.excerpt}</p>
-                    <a href="#" onclick="loadArticle('${article.file}'); return false;" 
-                       class="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-md">
-                        继续阅读
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                    </a>
-                </article>
-            `).join('');
+            const articles = data.articles.slice(0, articlesPerPage);
+            blogList.innerHTML = articles.map(article => renderArticle(article)).join('');
+
+            // 添加滚动监听
+            window.addEventListener('scroll', handleScroll);
+            hasMore = data.articles.length > articlesPerPage;
         })
         .catch(error => {
             console.error('文章列表加载失败:', error);
@@ -32,6 +25,64 @@ function loadArticleList() {
                 </div>
             `;
         });
+}
+
+function renderArticle(article) {
+    return `
+        <article class="p-8 md:p-12 hover:bg-blue-50/50 transition-all duration-300">
+            <h2 class="text-3xl font-bold mb-4">
+                <a href="#" onclick="loadArticle('${article.file}'); return false;" 
+                   class="text-gray-800 hover:text-blue-600 transition-colors duration-300">
+                    ${article.title}
+                </a>
+            </h2>
+            <div class="text-sm text-gray-500 mb-4">发布于 ${article.date}</div>
+            <p class="text-gray-600 mb-6 leading-relaxed">${article.excerpt}</p>
+            <a href="#" onclick="loadArticle('${article.file}'); return false;" 
+               class="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-md">
+                继续阅读
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+            </a>
+        </article>
+    `;
+}
+
+function handleScroll() {
+    if (isLoading || !hasMore) return;
+
+    const articles = document.querySelectorAll('.blog-list article');
+    if (articles.length < 2) return;
+
+    const secondLastArticle = articles[articles.length - 2];
+    const rect = secondLastArticle.getBoundingClientRect();
+
+    if (rect.bottom <= window.innerHeight) {
+        loadMoreArticles();
+    }
+}
+
+function loadMoreArticles() {
+    if (isLoading || !hasMore) return;
+    isLoading = true;
+
+    const start = currentPage * articlesPerPage;
+    const end = start + articlesPerPage;
+    const articles = window.articleData.articles.slice(start, end);
+
+    if (articles.length > 0) {
+        const blogList = document.querySelector('.blog-list');
+        const newContent = articles.map(article => renderArticle(article)).join('');
+        blogList.insertAdjacentHTML('beforeend', newContent);
+
+        currentPage++;
+        hasMore = end < window.articleData.articles.length;
+    } else {
+        hasMore = false;
+    }
+
+    isLoading = false;
 }
 
 function loadArticle(path) {
@@ -65,5 +116,25 @@ function loadArticle(path) {
             `;
             document.getElementById('home-page').classList.add('hidden');
             document.getElementById('article-page').classList.remove('hidden');
+        });
+}
+
+function loadFullArticle(path) {
+    fetch(path)
+        .then(response => response.ok ? response.text() : Promise.reject('文章加载失败'))
+        .then(text => {
+            const parsedContent = marked.parse(text);
+            document.getElementById('content').innerHTML = parsedContent;
+            // 处理代码高亮
+            document.querySelectorAll('pre code').forEach((block) => {
+                const language = block.className.replace('language-', '');
+                if (Prism.languages[language]) {
+                    block.innerHTML = Prism.highlight(
+                        block.textContent,
+                        Prism.languages[language],
+                        language
+                    );
+                }
+            });
         });
 } 
