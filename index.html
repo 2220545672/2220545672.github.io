@@ -7,8 +7,10 @@
     <title>我的博客</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.10/dist/typography.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link href="./styles/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
     <script>
         // 配置 marked
@@ -23,86 +25,6 @@
             smartypants: true,
             xhtml: false
         });
-
-        // Tailwind 配置
-        tailwind.config = {
-            theme: {
-                extend: {
-                    typography: {
-                        DEFAULT: {
-                            css: {
-                                maxWidth: 'none',
-                                color: '#374151',
-                                'h1, h2, h3, h4': {
-                                    color: '#1F2937',
-                                    fontWeight: '600',
-                                    'scroll-margin-top': '6rem',
-                                },
-                                strong: {
-                                    color: '#4B5563',
-                                    fontWeight: '600',
-                                },
-                                code: {
-                                    color: '#3B82F6',
-                                    fontWeight: '400',
-                                    backgroundColor: '#EFF6FF',
-                                    padding: '0.2em 0.4em',
-                                    borderRadius: '0.25em',
-                                    '&::before': { content: 'none' },
-                                    '&::after': { content: 'none' },
-                                },
-                                'code::before': {
-                                    content: 'none',
-                                },
-                                'code::after': {
-                                    content: 'none',
-                                },
-                                pre: {
-                                    backgroundColor: '#1F2937',
-                                    color: '#E5E7EB',
-                                    padding: '1rem',
-                                    borderRadius: '0.5rem',
-                                    code: {
-                                        backgroundColor: 'transparent',
-                                        color: 'inherit',
-                                        padding: '0',
-                                        fontWeight: '400',
-                                    },
-                                },
-                                blockquote: {
-                                    borderLeftColor: '#3B82F6',
-                                    backgroundColor: '#F3F4F6',
-                                    borderRadius: '0.25rem',
-                                    padding: '1rem 1.5rem',
-                                    color: '#4B5563',
-                                    fontStyle: 'italic',
-                                },
-                                'ul > li': {
-                                    paddingLeft: '1.75em',
-                                    '&::before': {
-                                        backgroundColor: '#3B82F6',
-                                    },
-                                },
-                                'ol > li': {
-                                    paddingLeft: '1.75em',
-                                    '&::before': {
-                                        color: '#3B82F6',
-                                    },
-                                },
-                                hr: {
-                                    borderColor: '#E5E7EB',
-                                    margin: '3em 0',
-                                },
-                                img: {
-                                    borderRadius: '0.5rem',
-                                    margin: '2em 0',
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-        }
     </script>
 </head>
 
@@ -113,7 +35,7 @@
                 class="text-center mb-10 bg-white/80 backdrop-blur-lg p-12 rounded-3xl shadow-lg border border-gray-100">
                 <h1
                     class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight">
-                    我的博客212
+                    我的博客21
                 </h1>
                 <p class="text-lg text-gray-600">探索技术，分享生活</p>
                 <div class="mt-8 flex justify-center gap-4">
@@ -202,8 +124,8 @@
         }
 
         function showHomePage() {
-            document.getElementById('home-page').style.display = 'block';
-            document.getElementById('article-page').style.display = 'none';
+            document.getElementById('home-page').classList.remove('hidden');
+            document.getElementById('article-page').classList.add('hidden');
             document.title = '我的博客';
             history.pushState({}, '', './');
         }
@@ -226,8 +148,8 @@
                             );
                         }
                     });
-                    document.getElementById('home-page').style.display = 'none';
-                    document.getElementById('article-page').style.display = 'block';
+                    document.getElementById('home-page').classList.add('hidden');
+                    document.getElementById('article-page').classList.remove('hidden');
                     document.title = text.split('\n')[0].replace('# ', '');
                     history.pushState({}, '', `?article=${encodeURIComponent(path)}`);
                 })
