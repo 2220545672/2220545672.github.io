@@ -1,0 +1,81 @@
+/* 自定义样式 */
+.prose {
+    max-width: none;
+    color: #374151;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+    color: #1F2937;
+    font-weight: 600;
+    scroll-margin-top: 6rem;
+}
+
+.prose strong {
+    color: #4B5563;
+    font-weight: 600;
+}
+
+.prose code {
+    color: #3B82F6;
+    font-weight: 400;
+    background-color: #EFF6FF;
+    padding: 0.2em 0.4em;
+    border-radius: 0.25em;
+}
+
+.prose code::before,
+.prose code::after {
+    content: none;
+}
+
+.prose pre {
+    background-color: #1F2937;
+    color: #E5E7EB;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.prose pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    font-weight: 400;
+}
+
+.prose blockquote {
+    border-left-color: #3B82F6;
+    background-color: #F3F4F6;
+    border-radius: 0.25rem;
+    padding: 1rem 1.5rem;
+    color: #4B5563;
+    font-style: italic;
+}
+
+.prose ul > li {
+    padding-left: 1.75em;
+}
+
+.prose ul > li::before {
+    background-color: #3B82F6;
+}
+
+.prose ol > li {
+    padding-left: 1.75em;
+}
+
+.prose ol > li::before {
+    color: #3B82F6;
+}
+
+.prose hr {
+    border-color: #E5E7EB;
+    margin: 3em 0;
+}
+
+.prose img {
+    border-radius: 0.5rem;
+    margin: 2em 0;
+} 
