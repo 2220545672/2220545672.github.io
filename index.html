@@ -183,19 +183,6 @@
             </header>
 
             <main class="blog-list">
-                <article class="blog-item">
-                    <h2 class="blog-title">
-                        <a href="#" onclick="loadArticle('posts/hello-world.md'); return false;">Hello World -
-                            我的第一篇博客</a>
-                    </h2>
-                    <div class="blog-meta">
-                        发布于 2024-03-20
-                    </div>
-                    <p class="blog-excerpt">
-                        这是我的第一篇博客文章，记录了建立这个博客的初衷和过程...
-                    </p>
-                    <a href="#" onclick="loadArticle('posts/hello-world.md'); return false;" class="read-more">继续阅读</a>
-                </article>
             </main>
         </div>
 
@@ -208,8 +195,36 @@
     </div>
 
     <script>
+        // 加载文章列表
+        function loadArticleList() {
+            fetch('posts/articles.json')
+                .then(response => response.json())
+                .then(data => {
+                    const blogList = document.querySelector('.blog-list');
+                    blogList.innerHTML = data.articles.map(article => `
+                        <article class="blog-item">
+                            <h2 class="blog-title">
+                                <a href="#" onclick="loadArticle('${article.file}'); return false;">${article.title}</a>
+                            </h2>
+                            <div class="blog-meta">
+                                发布于 ${article.date}
+                            </div>
+                            <p class="blog-excerpt">
+                                ${article.excerpt}
+                            </p>
+                            <a href="#" onclick="loadArticle('${article.file}'); return false;" class="read-more">继续阅读</a>
+                        </article>
+                    `).join('');
+                })
+                .catch(error => {
+                    console.error('Error loading article list:', error);
+                    document.querySelector('.blog-list').innerHTML = '<p>加载文章列表失败</p>';
+                });
+        }
+
         // 页面加载时显示首页
         window.onload = function () {
+            loadArticleList();
             // 检查 URL 参数是否有文章
             const urlParams = new URLSearchParams(window.location.search);
             const article = urlParams.get('article');
