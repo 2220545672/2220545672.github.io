@@ -8,6 +8,21 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    typography: {
+                        DEFAULT: {
+                            css: {
+                                maxWidth: 'none',
+                            },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 p-6 md:p-10">
@@ -17,7 +32,7 @@
                 class="text-center mb-10 bg-white/10 backdrop-blur-lg p-12 rounded-3xl shadow-2xl border border-white/20">
                 <h1
                     class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500 tracking-tight animate-pulse">
-                    我的博客2
+                    我的博客4
                 </h1>
                 <p class="text-lg text-gray-300">探索技术，分享生活</p>
                 <div class="mt-8 flex justify-center gap-4">
@@ -65,7 +80,7 @@
                 返回首页
             </a>
             <article class="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
-                <div id="content" class="markdown-body p-8 md:p-12 prose prose-invert max-w-none"></div>
+                <div id="content" class="p-8 md:p-12 prose prose-invert prose-lg w-full max-w-none"></div>
                 <div class="p-8 border-t border-white/10 text-center">
                     <a href="#" onclick="showHomePage(); return false;"
                         class="group inline-flex items-center px-8 py-3 bg-white/10 text-white rounded-full hover:bg-white/20 transition-all duration-300 hover:-translate-y-1">
