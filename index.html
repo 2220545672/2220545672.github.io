@@ -7,13 +7,22 @@
     <title>我的博客</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- PrismJS -->
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markdown.min.js"></script>
     <script>
+        // 配置 marked
+        marked.setOptions({
+            gfm: true, // GitHub 风格 Markdown
+            breaks: true, // 允许回车换行
+            highlight: function (code, lang) {
+                if (Prism.languages[lang]) {
+                    return Prism.highlight(code, Prism.languages[lang], lang);
+                }
+                return code;
+            }
+        });
+
+        // Tailwind 配置
         tailwind.config = {
             theme: {
                 extend: {
@@ -21,26 +30,29 @@
                         DEFAULT: {
                             css: {
                                 maxWidth: 'none',
+                                color: '#374151',
+                                a: {
+                                    color: '#3B82F6',
+                                    '&:hover': {
+                                        color: '#2563EB',
+                                    },
+                                },
                                 pre: {
-                                    backgroundColor: 'transparent',
-                                    color: null,
-                                    marginTop: 0,
-                                    marginBottom: '1.5em',
-                                    padding: '1em',
-                                    borderRadius: '0.5em',
+                                    backgroundColor: '#1F2937',
+                                    color: '#E5E7EB',
                                 },
                                 code: {
-                                    color: null,
-                                    backgroundColor: 'rgb(243 244 246)',
-                                    borderRadius: '0.25em',
-                                    padding: '0.2em 0.4em',
+                                    color: '#3B82F6',
+                                    '&::before': { content: '""' },
+                                    '&::after': { content: '""' },
+                                    fontWeight: '400',
+                                    backgroundColor: '#EFF6FF',
+                                    paddingLeft: '0.25rem',
+                                    paddingRight: '0.25rem',
+                                    paddingTop: '0.125rem',
+                                    paddingBottom: '0.125rem',
+                                    borderRadius: '0.25rem',
                                 },
-                                'code::before': {
-                                    content: '""'
-                                },
-                                'code::after': {
-                                    content: '""'
-                                }
                             },
                         },
                     },
@@ -57,7 +69,7 @@
                 class="text-center mb-10 bg-white/80 backdrop-blur-lg p-12 rounded-3xl shadow-lg border border-gray-100">
                 <h1
                     class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight">
-                    我的博客8
+                    我的博客
                 </h1>
                 <p class="text-lg text-gray-600">探索技术，分享生活</p>
                 <div class="mt-8 flex justify-center gap-4">
@@ -89,48 +101,20 @@
             </header>
 
             <main class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-                <div class="blog-list divide-y divide-white/10"></div>
+                <div class="blog-list divide-y divide-gray-100"></div>
             </main>
         </div>
 
         <div id="article-page" class="hidden">
             <a href="#" onclick="showHomePage(); return false;"
                 class="group inline-flex items-center mb-6 px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-md">
-                <svg class="w-4 h-4 mr-2 transform transition-transform group-hover:-translate-x-1" fill="currentColor"
-                    viewBox="0 0 20 20">
-                    <path fill-rule="evenodd"
-                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                        clip-rule="evenodd" />
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                 </svg>
                 返回首页
             </a>
             <article class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-                <div id="content" class="p-8 md:p-12 prose prose-lg w-full max-w-none
-                    prose-headings:text-gray-800
-                    prose-p:text-gray-600
-                    prose-a:text-blue-600 prose-a:no-underline hover:prose-a:text-blue-500
-                    prose-blockquote:border-l-4 prose-blockquote:border-blue-500 
-                    prose-blockquote:bg-blue-50/50 prose-blockquote:pl-4 prose-blockquote:py-1
-                    prose-strong:text-gray-800 prose-strong:font-semibold
-                    prose-ul:text-gray-600 prose-ul:list-disc
-                    prose-ol:text-gray-600 prose-ol:list-decimal
-                    prose-li:marker:text-blue-500
-                    [&>*:first-child]:mt-0
-                    [&>*:last-child]:mb-0">
-                    <div class="markdown-content"></div>
-                </div>
-                <div class="p-8 border-t border-gray-100 text-center">
-                    <a href="#" onclick="showHomePage(); return false;"
-                        class="group inline-flex items-center px-8 py-3 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300 hover:-translate-y-1 shadow-md">
-                        返回首页
-                        <svg class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
-                            fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
+                <div id="content" class="prose prose-lg w-full max-w-none p-8 md:p-12"></div>
             </article>
         </div>
     </div>
@@ -149,20 +133,13 @@
                                     ${article.title}
                                 </a>
                             </h2>
-                            <div class="flex items-center text-sm text-gray-500 mb-4">
-                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-                                </svg>
-                                发布于 ${article.date}
-                            </div>
-                            <p class="text-gray-600 mb-6 leading-relaxed">
-                                ${article.excerpt}
-                            </p>
+                            <div class="text-sm text-gray-500 mb-4">发布于 ${article.date}</div>
+                            <p class="text-gray-600 mb-6 leading-relaxed">${article.excerpt}</p>
                             <a href="#" onclick="loadArticle('${article.file}'); return false;" 
-                               class="group inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-md">
+                               class="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-md">
                                 继续阅读
-                                <svg class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                                 </svg>
                             </a>
                         </article>
@@ -172,69 +149,48 @@
                     console.error('文章列表加载失败:', error);
                     document.querySelector('.blog-list').innerHTML = `
                         <div class="p-12 text-center">
-                            <h3 class="text-xl font-bold mb-2 text-white">加载文章列表失败</h3>
-                            <p class="text-gray-400">请检查网络连接或稍后重试</p>
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">加载文章列表失败</h3>
+                            <p class="text-gray-600">请检查网络连接或稍后重试</p>
                         </div>
                     `;
                 });
         }
 
-        // 页面加载时显示首页
-        window.onload = function () {
-            loadArticleList();
-            // 检查 URL 参数是否有文章
-            const urlParams = new URLSearchParams(window.location.search);
-            const article = urlParams.get('article');
-            if (article) {
-                loadArticle(article);
-            } else {
-                showHomePage();
-            }
-        };
-
         function showHomePage() {
             document.getElementById('home-page').style.display = 'block';
             document.getElementById('article-page').style.display = 'none';
             document.title = '我的博客';
-            // 更新 URL，移除文章参数
             history.pushState({}, '', './');
         }
 
         function loadArticle(path) {
             fetch(path)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('文章加载失败');
-                    }
-                    return response.text();
-                })
+                .then(response => response.ok ? response.text() : Promise.reject('文章加载失败'))
                 .then(text => {
                     document.getElementById('content').innerHTML = marked.parse(text);
-                    // 高亮代码块
-                    document.querySelectorAll('pre code').forEach((block) => {
-                        Prism.highlightElement(block);
-                    });
                     document.getElementById('home-page').style.display = 'none';
                     document.getElementById('article-page').style.display = 'block';
-                    const title = text.split('\n')[0].replace('# ', '');
-                    document.title = title;
+                    document.title = text.split('\n')[0].replace('# ', '');
                     history.pushState({}, '', `?article=${encodeURIComponent(path)}`);
                 })
                 .catch(error => {
-                    console.error('Error loading markdown:', error);
-                    document.getElementById('content').innerHTML = '<h1>文章加载失败</h1><p>抱歉，无法加载文章内容。</p>';
+                    console.error(error);
+                    document.getElementById('content').innerHTML = `
+                        <h1 class="text-2xl font-bold text-red-600">文章加载失败</h1>
+                        <p class="text-gray-600">抱歉，无法加载文章内容。</p>
+                    `;
                 });
         }
 
-        // 处理浏览器的前进/后退按钮
+        window.onload = function () {
+            loadArticleList();
+            const article = new URLSearchParams(window.location.search).get('article');
+            article ? loadArticle(article) : showHomePage();
+        };
+
         window.onpopstate = function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const article = urlParams.get('article');
-            if (article) {
-                loadArticle(article);
-            } else {
-                showHomePage();
-            }
+            const article = new URLSearchParams(window.location.search).get('article');
+            article ? loadArticle(article) : showHomePage();
         };
     </script>
 </body>
