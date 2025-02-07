@@ -30,12 +30,12 @@
 
 <body class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6 md:p-10">
     <div class="max-w-4xl mx-auto">
-        <div id="home-page" class="hidden">
+        <div id="home-page">
             <header
                 class="text-center mb-10 bg-white/80 backdrop-blur-lg p-12 rounded-3xl shadow-lg border border-gray-100">
                 <h1
                     class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight">
-                    我的博客21
+                    我的博客213
                 </h1>
                 <p class="text-lg text-gray-600">探索技术，分享生活</p>
                 <div class="mt-8 flex justify-center gap-4">
@@ -159,13 +159,19 @@
                         <h1 class="text-2xl font-bold text-red-600">文章加载失败</h1>
                         <p class="text-gray-600">抱歉，无法加载文章内容。</p>
                     `;
+                    document.getElementById('home-page').classList.add('hidden');
+                    document.getElementById('article-page').classList.remove('hidden');
                 });
         }
 
         window.onload = function () {
             loadArticleList();
             const article = new URLSearchParams(window.location.search).get('article');
-            article ? loadArticle(article) : showHomePage();
+            if (article) {
+                loadArticle(article);
+            } else {
+                showHomePage();
+            }
         };
 
         window.onpopstate = function () {
