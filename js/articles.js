@@ -114,7 +114,7 @@ function loadArticle(path) {
         const contentDiv = document.getElementById('content');
         contentDiv.innerHTML = cached.parsedContent;
         highlightCode(contentDiv);
-        updateUIForArticle(cached.content);
+        updateUIForArticle(cached.content, path);
         return;
     }
 
@@ -131,7 +131,7 @@ function loadArticle(path) {
             const contentDiv = document.getElementById('content');
             contentDiv.innerHTML = parsedContent;
             highlightCode(contentDiv);
-            updateUIForArticle(text);
+            updateUIForArticle(text, path);
         })
         .catch(error => {
             console.error(error);
@@ -157,7 +157,7 @@ function highlightCode(container) {
     });
 }
 
-function updateUIForArticle(text) {
+function updateUIForArticle(text, path) {
     document.getElementById('home-page').classList.add('hidden');
     document.getElementById('article-page').classList.remove('hidden');
     document.title = text.split('\n')[0].replace('# ', '');
