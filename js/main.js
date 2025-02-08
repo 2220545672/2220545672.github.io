@@ -34,6 +34,14 @@ window.onload = function () {
     } else {
         showHomePage();
     }
+
+    // 初始化所有需要自定义滚动条的元素
+    document.querySelectorAll('[data-simplebar]').forEach(element => {
+        new SimpleBar(element, {
+            autoHide: true,
+            scrollbarMinSize: 40
+        });
+    });
 };
 
 window.onpopstate = function () {
