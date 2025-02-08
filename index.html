@@ -44,15 +44,22 @@
             </div>
             <!-- 侧边栏底部 -->
             <div class="p-4 border-t border-gray-100">
-                <button onclick="toggleSidebar()" class="w-full flex items-center justify-center p-2 text-gray-500 rounded-lg hover:bg-gray-100">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                <button onclick="toggleSidebar()" class="p-2 text-gray-500 rounded-lg hover:bg-gray-100 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                    <span class="ml-2">隐藏侧边栏</span>
                 </button>
             </div>
         </div>
     </aside>
+
+    <!-- 显示侧边栏按钮 -->
+    <button id="show-sidebar-btn" onclick="toggleSidebar()" 
+        class="fixed top-4 left-4 z-50 hidden p-2 bg-white text-gray-500 rounded-lg shadow-md hover:bg-gray-100 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
 
     <div id="main-content" class="transition-all duration-300 ml-64">
         <div class="max-w-4xl mx-auto p-6 md:p-10">
