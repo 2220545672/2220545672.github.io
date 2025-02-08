@@ -22,79 +22,94 @@
 <body class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
     <!-- 侧边栏 -->
     <aside id="sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen" aria-label="Sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-white shadow-lg border-r border-gray-100">
+        <div class="flex flex-col h-full bg-white shadow-lg border-r border-gray-100">
+            <!-- 侧边栏头部 -->
             <div class="mb-6 p-4">
                 <h2 class="text-2xl font-semibold text-gray-800">目录</h2>
             </div>
-            <ul class="space-y-2 font-medium" id="sidebar-menu">
-                <li>
-                    <a href="#" onclick="showHomePage(); return false;" 
-                       class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                        <svg class="w-5 h-5 text-gray-500 transition duration-75" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                            <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
-                            <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
-                        </svg>
-                        <span class="ml-3">首页</span>
-                    </a>
-                </li>
-            </ul>
+            <!-- 侧边栏内容 -->
+            <div class="flex-1 px-3 overflow-y-auto">
+                <ul class="space-y-2 font-medium" id="sidebar-menu">
+                    <li>
+                        <a href="#" onclick="showHomePage(); return false;" 
+                           class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
+                            <svg class="w-5 h-5 text-gray-500 transition duration-75" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                                <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
+                                <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
+                            </svg>
+                            <span class="ml-3">首页</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 侧边栏底部 -->
+            <div class="p-4 border-t border-gray-100">
+                <button onclick="toggleSidebar()" class="w-full flex items-center justify-center p-2 text-gray-500 rounded-lg hover:bg-gray-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                    </svg>
+                    <span class="ml-2">隐藏侧边栏</span>
+                </button>
+            </div>
         </div>
     </aside>
 
-    <div class="max-w-4xl mx-auto p-6 md:p-10 ml-64">
-        <div id="home-page">
-            <header
-                class="text-center mb-10 bg-white/80 backdrop-blur-lg p-12 rounded-3xl shadow-lg border border-gray-100">
-                <h1
-                    class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight">
-                    我的博客9
-                </h1>
-                <p class="text-lg text-gray-600">探索技术，分享生活</p>
-                <div class="mt-8 flex justify-center gap-4">
-                    <a href="https://github.com" target="_blank"
-                        class="group px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full transition-all duration-300 hover:-translate-y-1 shadow-md">
-                        <span class="inline-flex items-center">
-                            GitHub
-                            <svg class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
-                                fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                    </a>
-                    <a href="https://twitter.com" target="_blank"
-                        class="group px-6 py-2 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300 hover:-translate-y-1 shadow-md">
-                        <span class="inline-flex items-center">
-                            Twitter
-                            <svg class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
-                                fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-            </header>
+    <div id="main-content" class="transition-all duration-300 ml-64">
+        <div class="max-w-4xl mx-auto p-6 md:p-10">
+            <div id="home-page">
+                <header
+                    class="text-center mb-10 bg-white/80 backdrop-blur-lg p-12 rounded-3xl shadow-lg border border-gray-100">
+                    <h1
+                        class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight">
+                        我的博客9
+                    </h1>
+                    <p class="text-lg text-gray-600">探索技术，分享生活</p>
+                    <div class="mt-8 flex justify-center gap-4">
+                        <a href="https://github.com" target="_blank"
+                            class="group px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full transition-all duration-300 hover:-translate-y-1 shadow-md">
+                            <span class="inline-flex items-center">
+                                GitHub
+                                <svg class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://twitter.com" target="_blank"
+                            class="group px-6 py-2 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300 hover:-translate-y-1 shadow-md">
+                            <span class="inline-flex items-center">
+                                Twitter
+                                <svg class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </header>
 
-            <main class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-                <div class="blog-list divide-y divide-gray-100"></div>
-            </main>
-        </div>
+                <main class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+                    <div class="blog-list divide-y divide-gray-100"></div>
+                </main>
+            </div>
 
-        <div id="article-page" class="hidden">
-            <a href="#" onclick="showHomePage(); return false;"
-                class="group inline-flex items-center mb-6 px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-md">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                返回首页
-            </a>
-            <article class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-                <div id="content" class="markdown-body github-markdown-light w-full p-8 md:p-12"></div>
-            </article>
+            <div id="article-page" class="hidden">
+                <a href="#" onclick="showHomePage(); return false;"
+                    class="group inline-flex items-center mb-6 px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-md">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    返回首页
+                </a>
+                <article class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+                    <div id="content" class="markdown-body github-markdown-light w-full p-8 md:p-12"></div>
+                </article>
+            </div>
         </div>
     </div>
 </body>
