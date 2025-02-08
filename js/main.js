@@ -5,7 +5,28 @@ function showHomePage() {
     history.pushState({}, '', './');
 }
 
+// 检查系统主题和本地存储的主题设置
+function initTheme() {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+}
+
+// 切换夜间模式
+function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+    } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+    }
+}
+
 window.onload = function () {
+    initTheme();
     loadArticleList();
     const article = new URLSearchParams(window.location.search).get('article');
     if (article) {
