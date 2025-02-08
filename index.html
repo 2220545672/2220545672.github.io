@@ -71,7 +71,7 @@
                 <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">目录</h2>
             </div>
             <!-- 侧边栏内容 -->
-            <div class="flex-1 px-3" data-simplebar>
+            <div class="flex-1 px-3 sidebar-content">
                 <ul class="space-y-2 font-medium" id="sidebar-menu">
                     <li>
                         <a href="#" onclick="showHomePage(); return false;"
@@ -119,8 +119,8 @@
         </svg>
     </button>
 
-    <div id="main-content" class="transition-all duration-300 ml-64 dark:bg-gray-900">
-        <div class="max-w-4xl mx-auto p-6 md:p-10" data-simplebar>
+    <div id="main-content" class="transition-all duration-300 ml-64 dark:bg-gray-900 overflow-y-auto">
+        <div class="max-w-4xl mx-auto p-6 md:p-10">
             <div id="home-page">
                 <header
                     class="text-center mb-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-12 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">

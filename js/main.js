@@ -35,13 +35,16 @@ window.onload = function () {
         showHomePage();
     }
 
-    // 初始化所有需要自定义滚动条的元素
-    document.querySelectorAll('[data-simplebar]').forEach(element => {
-        new SimpleBar(element, {
+    // 只在侧边栏内容区域使用 SimpleBar
+    const sidebarContent = document.querySelector('.sidebar-content');
+    if (sidebarContent) {
+        new SimpleBar(sidebarContent, {
             autoHide: true,
-            scrollbarMinSize: 40
+            scrollbarMinSize: 40,
+            timeout: 1000,
+            clickOnTrack: false
         });
-    });
+    }
 };
 
 window.onpopstate = function () {
