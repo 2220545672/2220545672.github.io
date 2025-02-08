@@ -57,9 +57,10 @@
     <!-- 侧边栏 -->
     <aside id="sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen" aria-label="Sidebar">
         <div
-            class="flex flex-col h-full bg-white/90 dark:bg-gray-800/90 shadow-lg border-r border-gray-100/50 dark:border-gray-700/50 relative backdrop-blur-xl">
+            class="flex flex-col h-full bg-white/80 dark:bg-gray-900/80 shadow-lg border-r border-blue-200/30 dark:border-blue-500/20 relative backdrop-blur-xl">
             <!-- 侧边栏头部 -->
-            <div class="mb-6 p-4 border-b border-gray-100/50 dark:border-gray-700/50">
+            <div
+                class="mb-6 p-4 border-b border-blue-200/30 dark:border-blue-500/20 bg-gradient-to-r from-transparent via-blue-50/10 dark:via-blue-500/10 to-transparent">
                 <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">目录</h2>
             </div>
             <!-- 侧边栏内容 -->
@@ -82,7 +83,7 @@
             </div>
             <!-- 侧边栏底部 -->
             <button onclick="toggleSidebar()"
-                class="absolute bottom-4 -right-4 p-2 bg-white/90 dark:bg-gray-800/90 text-gray-500 dark:text-gray-400 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 shadow-md backdrop-blur-xl border border-gray-100/50 dark:border-gray-700/50 transition-all hover:scale-110">
+                class="absolute bottom-4 -right-4 p-2 bg-blue-500/10 dark:bg-blue-500/20 text-gray-600 dark:text-gray-300 rounded-full hover:bg-blue-500/20 dark:hover:bg-blue-400/30 shadow-[0_0_10px_rgba(59,130,246,0.5)] dark:shadow-[0_0_15px_rgba(37,99,235,0.5)] backdrop-blur-xl border border-blue-200/50 dark:border-blue-500/50 transition-all hover:scale-110 hover:rotate-180">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -92,7 +93,7 @@
 
     <!-- 显示侧边栏按钮 -->
     <button id="show-sidebar-btn" onclick="toggleSidebar()"
-        class="fixed top-4 left-4 z-50 hidden p-2 bg-white text-gray-500 rounded-lg shadow-md hover:bg-gray-100 transition-colors">
+        class="fixed top-4 left-4 z-50 hidden p-2 bg-blue-500/10 dark:bg-blue-500/20 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-blue-500/20 dark:hover:bg-blue-400/30 shadow-[0_0_10px_rgba(59,130,246,0.5)] dark:shadow-[0_0_15px_rgba(37,99,235,0.5)] backdrop-blur-xl border border-blue-200/50 dark:border-blue-500/50 transition-all hover:scale-110">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
@@ -100,7 +101,7 @@
 
     <!-- 夜间模式切换按钮 -->
     <button onclick="toggleDarkMode()"
-        class="fixed top-4 right-4 z-50 p-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-lg shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+        class="fixed top-4 right-4 z-50 p-2 bg-blue-500/10 dark:bg-blue-500/20 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-blue-500/20 dark:hover:bg-blue-400/30 shadow-[0_0_10px_rgba(59,130,246,0.5)] dark:shadow-[0_0_15px_rgba(37,99,235,0.5)] backdrop-blur-xl border border-blue-200/50 dark:border-blue-500/50 transition-all hover:scale-110">
         <svg class="w-5 h-5 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
         </svg>
