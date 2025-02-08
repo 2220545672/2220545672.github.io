@@ -57,15 +57,22 @@ function toggleSidebar() {
     const mainContent = document.getElementById('main-content');
     const showSidebarBtn = document.getElementById('show-sidebar-btn');
     
+    const duration = 300; // 动画持续时间（毫秒）
+
     if (sidebar.classList.contains('hidden')) {
         // 显示侧边栏
         sidebar.classList.remove('hidden');
+        sidebar.style.transform = 'translateX(0)';
         mainContent.classList.remove('ml-0');
         mainContent.classList.add('ml-64');
         showSidebarBtn.classList.add('hidden');
     } else {
         // 隐藏侧边栏
-        sidebar.classList.add('hidden');
+        sidebar.style.transform = 'translateX(-100%)';
+        setTimeout(() => {
+            sidebar.classList.add('hidden');
+            sidebar.style.transform = '';
+        }, duration);
         mainContent.classList.remove('ml-64');
         mainContent.classList.add('ml-0');
         showSidebarBtn.classList.remove('hidden');
