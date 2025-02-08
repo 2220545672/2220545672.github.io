@@ -200,7 +200,7 @@ function updateSidebarMenu(articles) {
             </a>
         </li>
     `).join('');
-    
+
     sidebarMenu.innerHTML = `
         <li>
             <a href="#" onclick="showHomePage(); return false;" 
