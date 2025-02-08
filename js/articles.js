@@ -38,15 +38,15 @@ function loadArticleList() {
 
 function renderArticle(article) {
     return `
-        <article class="p-8 md:p-12 hover:bg-blue-50/50 transition-all duration-300">
+        <article class="p-8 md:p-12 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-all duration-300">
             <h2 class="text-3xl font-bold mb-4">
                 <a href="#" onclick="loadArticle('${article.file}'); return false;" 
-                   class="text-gray-800 hover:text-blue-600 transition-colors duration-300">
+                   class="text-gray-800 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
                     ${article.title}
                 </a>
             </h2>
-            <div class="text-sm text-gray-500 mb-4">发布于 ${article.date}</div>
-            <p class="text-gray-600 mb-6 leading-relaxed">${article.excerpt}</p>
+            <div class="text-sm text-gray-500 dark:text-gray-400 mb-4">发布于 ${article.date}</div>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">${article.excerpt}</p>
             <a href="#" onclick="loadArticle('${article.file}'); return false;" 
                class="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-all duration-300 hover:-translate-y-1 shadow-md">
                 继续阅读

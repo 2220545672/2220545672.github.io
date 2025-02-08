@@ -17,6 +17,31 @@
     <script src="./js/marked.js"></script>
     <script src="./js/articles.js"></script>
     <script src="./js/main.js"></script>
+    <style>
+        /* 明亮模式的 Markdown 样式 */
+        :root:not(.dark) .markdown-body {
+            --color-canvas-default: rgba(255, 255, 255, 0.8);
+            --color-canvas-subtle: rgba(246, 248, 250, 0.8);
+            color-scheme: light;
+        }
+
+        /* 暗黑模式的 Markdown 样式 */
+        :root.dark .markdown-body {
+            --color-canvas-default: rgba(31, 41, 55, 0.8);
+            --color-canvas-subtle: rgba(17, 24, 39, 0.8);
+            --color-fg-default: #e5e7eb;
+            --color-fg-muted: #9ca3af;
+            --color-fg-subtle: #6b7280;
+            --color-border-default: #374151;
+            --color-border-muted: #374151;
+            --color-neutral-muted: rgba(110, 118, 129, 0.4);
+            --color-accent-fg: #60a5fa;
+            --color-accent-emphasis: #3b82f6;
+            --color-attention-subtle: rgba(187, 128, 9, 0.15);
+            --color-danger-fg: #ef4444;
+            color-scheme: dark;
+        }
+    </style>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -94,7 +119,7 @@
                         class="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight">
                         我的博客9
                     </h1>
-                    <p class="text-lg text-gray-600">探索技术，分享生活</p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">探索技术，分享生活</p>
                     <div class="mt-8 flex justify-center gap-4">
                         <a href="https://github.com" target="_blank"
                             class="group px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full transition-all duration-300 hover:-translate-y-1 shadow-md">
@@ -125,7 +150,7 @@
 
                 <main
                     class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden">
-                    <div class="blog-list divide-y divide-gray-100 dark:divide-gray-700"></div>
+                    <div class="blog-list divide-y divide-gray-100 dark:divide-gray-700 dark:text-gray-300"></div>
                 </main>
             </div>
 
@@ -139,8 +164,7 @@
                 </a>
                 <article
                     class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden">
-                    <div id="content"
-                        class="markdown-body github-markdown-light dark:github-markdown-dark w-full p-8 md:p-12"></div>
+                    <div id="content" class="markdown-body w-full p-8 md:p-12"></div>
                 </article>
             </div>
         </div>
